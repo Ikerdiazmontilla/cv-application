@@ -4,13 +4,13 @@ export default function PersonalDetails({ handleChange }) {
 
 
   return(
-    <fieldset>
+    <form className="personal-details">
       <h2>Personal Details</h2>
 
       <Field id="full-name" handleChange={handleChange} label="Full Name"/>
       <Field id="email" handleChange={handleChange} label="Email"/>
       <Field id="phone" handleChange={handleChange} label="Phone Number"/>
       <Field id="address" handleChange={handleChange} label="Address"/>
-    </fieldset>
+    </form>
   )
 }

@@ -3,10 +3,12 @@ import Content from "./content/Content"
 
 function App() {
 
+  function handleChange() {}
+
   return (
     <div className="body">
     <p>Mario</p>
-      <Content/>
+      <Content handleChange={handleChange}/>
     <div>Pizza</div>
     </div>
   )

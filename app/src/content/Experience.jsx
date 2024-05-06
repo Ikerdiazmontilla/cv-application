@@ -19,7 +19,7 @@ export default function Experience({ handleChange }) {
   );
 
   return (
-    <fieldset>
+    <form className="experience">
     <h2 className="title"> <img className="logo" src={suitcasePic} alt="" />  Experience <button type="button" onClick={handleClick} className={clicked ? "arrow clicked" : "arrow"}>⌄</button></h2>
     
     <div className={clicked ? "fields-container expanded" : "fields-container"}>
@@ -27,6 +27,6 @@ export default function Experience({ handleChange }) {
     </div>
 
 
-  </fieldset>
+  </form>
   )
 }

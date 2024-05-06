@@ -1,0 +1,16 @@
+Do the other part of the form.
+
+When save is clicked, get all the values from all the fields of that form, then call a function with those values, create a new title and add it to the website.
+
+Brainstorm how to store those titles so that they don't change while other states change
+
+
+
+
+EducationValues is an object that has all the values of all the degrees in it, and i can iterate over it to create the sections for the education field.
+Then when someone clicks one education section, i can get that id, search in the object, get the values, and put them in the form fields
+
+
+
+Things to fix: when you press +education, fields blank, currentId = ""
+when you press a section, fields should be with those values, currentId = that sections id.

@@ -6,13 +6,13 @@ export default function Content({ handleChange }) {
 
 
   return(
-    <form className="info">
+    <div className="info">
     <PersonalDetails handleChange={handleChange}/>
 
     <Education/> 
 
     <Experience/>   
     
-    </form>
+    </div>
   )
 }
