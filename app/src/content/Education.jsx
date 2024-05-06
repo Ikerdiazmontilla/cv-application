@@ -3,7 +3,8 @@ import Field from "./Field"
 import educationPic from "../assets/education.png"
 import showPic from "../assets/view.png"
 import hidePic from "../assets/hide.png"
-import binPic from "../assets/bin.png"
+import { v4 as uuidv4 } from 'uuid';
+import FormBtns from "./FormBtns"
 
 function EducationSection({ values, handleShowForm }) {
   const [ show, setShow ] = useState(true);
@@ -12,7 +13,7 @@ function EducationSection({ values, handleShowForm }) {
     setShow(!show)};
 
   return(
-    <div type="button" className="education-section" id={values.degree}  onClick={handleShowForm}>
+    <div type="button" className="education-section" id={values.id}  onClick={handleShowForm}>
         <p>{values.school}</p>
         <button type="button" className="show" onClick={ (e) => {
           e.stopPropagation();
@@ -35,32 +36,14 @@ const EducationBtn = ({ handleShowForm }) => {
 
 
 export default function Education({ handleChange }) {
-  const [ clicked, setClicked ] = useState(false);
+  const [ expanded, setExpanded ] = useState(false);
   const [ showForm, setShowForm ] = useState(false)
   const [ currentId, setCurrentId ] = useState(null)
-  // const [ formValues, setFormValues ] = useState({
-  //   school: "",
-  //   degree: "",
-  //   "start-date": "",
-  //   "end-date": "",
-  //   location: "",
-  // })
-  // math: {
-  //   school: "London City University",
-  //   degree: "math",
-  //   startDate: "a",
-  //   endDate: "b",
-  //   location: "c",
-
-  // }
   const [ educationValues, setEducationValues ] = useState({})
  
 
+  const handleExpand = () => setExpanded(!expanded)
 
-
-
-  
-  const handleClick = () => setClicked(!clicked)
   const handleShowForm = (event) => {
     setCurrentId(null);
     if(event.currentTarget.id) {
@@ -69,24 +52,25 @@ export default function Education({ handleChange }) {
     setShowForm(!showForm)
   }
   
-
   const handleSave = () => {
     const school = document.querySelector('#school').value
     const degree = document.querySelector('#degree').value
     const startDate = document.querySelector('#start-date').value
     const endDate = document.querySelector('#end-date').value
     const location = document.querySelector('#location').value
+    const id = uuidv4();
     
     const newValues = {...educationValues}
     delete newValues[currentId];
     const newObject = {
       ...newValues,
-      [degree]: {
+      [id]: {
       school,
       degree,
       startDate,
       endDate,
       location,
+      id,
       },
     }
     setEducationValues(newObject);
@@ -112,32 +96,27 @@ export default function Education({ handleChange }) {
       initValue={educationValues[currentId] ? educationValues[currentId]['endDate'] : ""}/>
       <Field id="location" handleChange={handleChange} label="Location" 
       initValue={educationValues[currentId] ? educationValues[currentId]['location'] : ""}/>
-      <div className="form-btns">
-        <button className="form-btn delete" type="button" onClick={handleDelete}> <img src={binPic} alt=""/>Delete</button>
-        <button className="form-btn cancel" type="button" onClick={handleShowForm}>Cancel</button>
-        <button className="form-btn save" type="button" onClick={handleSave}>Save</button>
-      </div>
+      <FormBtns handleDelete={handleDelete} handleSave={handleSave} handleShowForm={handleShowForm}/>
     </>
   );
 
 
   return (
     <form className="education">
-    <h2 className="title">  <img className="logo" src={educationPic} alt="" /> Education <button type="button" className={clicked ? "arrow clicked" : "arrow"} onClick={handleClick}>⌄</button></h2>
-   
-    <div className={clicked ? "fields-container expanded" : "fields-container"}>
-      {showForm ? <EducationFields/> :
-            <>
-              {Object.values(educationValues).map((values) => {
-                return <EducationSection key={values.degree} values={values} handleShowForm={handleShowForm}/>
-              })}
-              <EducationBtn handleShowForm={handleShowForm}/>
-            </>
-      }
-
-    </div>
+      <h2 className="title">  <img className="logo" src={educationPic} alt="" /> Education <button type="button" className={expanded ? "arrow clicked" : "arrow"} onClick={handleExpand}>⌄</button></h2>
+    
+      <div className={expanded ? "fields-container expanded" : "fields-container"}>
+        {showForm ? <EducationFields/> :
+              <>
+                {Object.values(educationValues).map((values) => {
+                  return <EducationSection key={values.id} values={values} handleShowForm={handleShowForm}/>
+                })}
+                <EducationBtn handleShowForm={handleShowForm}/>
+              </>
+        }
+      </div>
   
-  </form>
+    </form>
   )
 }
 
@@ -145,3 +124,19 @@ export default function Education({ handleChange }) {
 
             {/* <EducationSection handleShowForm={handleShowForm} title="London City University"/>
             <EducationSection values={{school: "Hidden University"}}/> */}
+
+              // const [ formValues, setFormValues ] = useState({
+  //   school: "",
+  //   degree: "",
+  //   "start-date": "",
+  //   "end-date": "",
+  //   location: "",
+  // })
+  // math: {
+  //   school: "London City University",
+  //   degree: "math",
+  //   startDate: "a",
+  //   endDate: "b",
+  //   location: "c",
+
+  // }
