@@ -1,38 +1,14 @@
 import { useState } from "react"
 import Field from "./Field"
 import educationPic from "../assets/education.png"
-import showPic from "../assets/view.png"
-import hidePic from "../assets/hide.png"
 import { v4 as uuidv4 } from 'uuid';
 import FormBtns from "./FormBtns"
+import MoreBtn from "./MoreBtn"
+import Section from "./Section";
 
-function EducationSection({ values, handleShowForm }) {
-  const [ show, setShow ] = useState(true);
 
-  const handleShow = () => {
-    setShow(!show)};
 
-  return(
-    <div type="button" className="education-section" id={values.id}  onClick={handleShowForm}>
-        <p>{values.school}</p>
-        <button type="button" className="show" onClick={ (e) => {
-          e.stopPropagation();
-          handleShow();
-        }}>
-          <img src={ show &&  showPic || hidePic} alt="show title" />
-        </button>
-    </div>
-  )
-}
 
-const EducationBtn = ({ handleShowForm }) => {
-
-  return(
-    <button type="button" className="more-education" onClick={handleShowForm}>
-          + Education
-    </button>
-  )
-}
 
 
 export default function Education({ handleChange }) {
@@ -109,9 +85,9 @@ export default function Education({ handleChange }) {
         {showForm ? <EducationFields/> :
               <>
                 {Object.values(educationValues).map((values) => {
-                  return <EducationSection key={values.id} values={values} handleShowForm={handleShowForm}/>
+                  return <Section key={values.id} values={values} handleShowForm={handleShowForm}/>
                 })}
-                <EducationBtn handleShowForm={handleShowForm}/>
+                <MoreBtn handleShowForm={handleShowForm} text={'+ Education'}/>
               </>
         }
       </div>
