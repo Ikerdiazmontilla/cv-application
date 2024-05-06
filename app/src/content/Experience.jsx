@@ -31,6 +31,8 @@ export default function Experience({ handleChange }) {
     const location = document.querySelector('#experience-location').value
     const description = document.querySelector('#description').value
     const id = uuidv4();
+
+    if(name.length === 0 || position.length === 0) return;
     
     const newValues = {...experienceValues}
     delete newValues[currentId];

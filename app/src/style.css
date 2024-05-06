@@ -103,6 +103,12 @@ input{
   font-size: 0.8rem;
   padding:10px;
   /* box-shadow: 1px 2px 3px 2px rgb(211, 210, 210); */
+  outline: 2px solid transparent;
+  transition: outline 0.3s;
+}
+
+input:focus{
+  outline: 2px solid rgb(0, 102, 255);
 }
 
 button {
@@ -126,7 +132,7 @@ img{
 }
 
 .fields-container{
-  overflow: hidden;
+  /* overflow: hidden; */
   transition: max-height 0.3s ease-out, opacity 0.3s ease-in;
   max-height: 0;
   opacity: 0;

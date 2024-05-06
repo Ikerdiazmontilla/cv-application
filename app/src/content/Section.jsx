@@ -2,7 +2,7 @@ import { useState } from "react"
 import showPic from "../assets/view.png"
 import hidePic from "../assets/hide.png"
 
-export default function Section({ values, handleShowForm, isEducation }) {
+export default function Section({ values, handleShowForm, isEducation = false }) {
   const [ show, setShow ] = useState(true);
 
   const handleShow = () => {

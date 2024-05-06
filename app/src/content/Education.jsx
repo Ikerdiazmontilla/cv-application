@@ -35,6 +35,8 @@ export default function Education({ handleChange }) {
     const endDate = document.querySelector('#end-date').value
     const location = document.querySelector('#location').value
     const id = uuidv4();
+
+    if(school.length === 0 || degree.length === 0) return;
     
     const newValues = {...educationValues}
     delete newValues[currentId];
@@ -85,7 +87,7 @@ export default function Education({ handleChange }) {
         {showForm ? <EducationFields/> :
               <>
                 {Object.values(educationValues).map((values) => {
-                  return <Section key={values.id} values={values} handleShowForm={handleShowForm}/>
+                  return <Section key={values.id} values={values} handleShowForm={handleShowForm} isEducation={true}/>
                 })}
                 <MoreBtn handleShowForm={handleShowForm} text={'+ Education'}/>
               </>
