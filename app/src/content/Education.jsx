@@ -26,7 +26,6 @@ function EducationSection({ values, handleShowForm }) {
 
 const EducationBtn = ({ handleShowForm }) => {
 
-
   return(
     <button type="button" className="more-education" onClick={handleShowForm}>
           + Education
@@ -55,7 +54,7 @@ export default function Education({ handleChange }) {
 
   // }
   const [ educationValues, setEducationValues ] = useState({})
-  // const [ sectionsArray, setSectionsArray ] = useState([])
+ 
 
 
 
@@ -92,8 +91,13 @@ export default function Education({ handleChange }) {
     }
     setEducationValues(newObject);
     setShowForm(!showForm);
-    // setSectionsArray([...sectionsArray, newValues]);
-      
+  }
+
+  const handleDelete = () => {
+    const newValues = {...educationValues};
+    delete newValues[currentId];
+    setEducationValues(newValues);
+    setShowForm(!showForm)
   }
 
   const EducationFields = () => (
@@ -109,7 +113,7 @@ export default function Education({ handleChange }) {
       <Field id="location" handleChange={handleChange} label="Location" 
       initValue={educationValues[currentId] ? educationValues[currentId]['location'] : ""}/>
       <div className="form-btns">
-        <button className="form-btn delete" type="button" > <img src={binPic} alt="" />Delete</button>
+        <button className="form-btn delete" type="button" onClick={handleDelete}> <img src={binPic} alt=""/>Delete</button>
         <button className="form-btn cancel" type="button" onClick={handleShowForm}>Cancel</button>
         <button className="form-btn save" type="button" onClick={handleSave}>Save</button>
       </div>

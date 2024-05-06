@@ -147,6 +147,7 @@ img{
   padding: 12px 6px;
   transition: background-color 0.3s;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .education-section:hover{
