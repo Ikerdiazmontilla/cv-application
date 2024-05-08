@@ -1,5 +1,6 @@
 // import { useState } from 'react'
 import Content from "./content/Content"
+import Menu from "./Menu"
 
 function App() {
 
@@ -7,7 +8,7 @@ function App() {
 
   return (
     <div className="body">
-    <p>Mario</p>
+      <Menu/>
       <Content handleChange={handleChange}/>
     <div>Pizza</div>
     </div>
