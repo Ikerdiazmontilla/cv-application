@@ -65,9 +65,11 @@ export default function Education({ handleChange }) {
   const EducationFields = () => (
     <>
       <Field id="school" handleChange={handleChange} label="School" 
-      initValue={educationValues[currentId] ? educationValues[currentId]['school'] : ""}/>
+      initValue={educationValues[currentId] ? educationValues[currentId]['school'] : ""}
+      isRequired={true}/>
       <Field id="degree" handleChange={handleChange} label="Degree" 
-      initValue={educationValues[currentId] ? educationValues[currentId]['degree'] : ""}/>
+      initValue={educationValues[currentId] ? educationValues[currentId]['degree'] : ""}
+      isRequired={true}/>
       <Field id="start-date" handleChange={handleChange} label="Start Date" 
       initValue={educationValues[currentId] ? educationValues[currentId]['startDate'] : ""}/>
       <Field id="end-date" handleChange={handleChange} label="End Date" 

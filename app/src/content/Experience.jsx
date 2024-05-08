@@ -62,9 +62,11 @@ export default function Experience({ handleChange }) {
   const ExperienceFields = () => (
     <>
       <Field id="comp-name" handleChange={handleChange} label="Company Name"
-      initValue={experienceValues[currentId] ? experienceValues[currentId]['name'] : ""}/>
+      initValue={experienceValues[currentId] ? experienceValues[currentId]['name'] : ""}
+      isRequired={true}/>
       <Field id="position" handleChange={handleChange} label="Position Title"
-      initValue={experienceValues[currentId] ? experienceValues[currentId]['position'] : ""}/>
+      initValue={experienceValues[currentId] ? experienceValues[currentId]['position'] : ""}
+      isRequired={true}/>
       <Field id="experience-start-date" handleChange={handleChange} label="Start Date"
       initValue={experienceValues[currentId] ? experienceValues[currentId]['startDate'] : ""}/>
       <Field id="experience-end-date" handleChange={handleChange} label="End Date"

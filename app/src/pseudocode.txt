@@ -1,8 +1,5 @@
 Do the other part of the form.
 
-Add delete functionality, organize code, do the same stuff in the experience section.
-
-Add checks so that people fill all the required fields
 
 After that do the customize section
 
