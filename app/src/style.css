@@ -104,10 +104,18 @@ img{
   padding: 12px;
   border-radius: var(--border-radius);
   min-width: 100%;
-  transition: background-color 0.3s;
+  transform: 0;
+  transition: 
+  background-color 0.3s,
+  transform 0.3s;
+  will-change: transform;
 }
 
 .menu-btn:hover{
+  transform: scale(1.05);
+}
+
+.menu-btn.active{
   background-color: var(--btn-hover);
 }
 
