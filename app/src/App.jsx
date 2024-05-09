@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Content from "./content/Content"
 import Menu from "./Menu"
 import Appearance from './appereance/Appearance';
+import CV from './cv/CV';
 
 function App() {
   const [ isContent, setIsContent ] = useState(true);
@@ -17,12 +18,21 @@ function App() {
   };
   function handleChange() {}
 
+  const handleVisuals = (event) => {
+    const cv = document.querySelector('.cv');
+    cv.className = `cv ${event.currentTarget.id}`;
+  }
+
+  const handleColorChange = (event) => {
+    document.documentElement.style.cssText = `--current-color: ${event.currentTarget.value}`;
+  }
+
   return (
     <div className="body">
       <Menu handleMenuClick={handleMenuClick}/>
       {isContent === true ? <Content handleChange={handleChange}/>
-      : <Appearance/>}
-    <div>Pizza</div>
+      : <Appearance handleVisuals={handleVisuals} handleColorChange={handleColorChange}/>}
+      <CV/>
     </div>
   )
 }
