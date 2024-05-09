@@ -82,7 +82,7 @@ export default function Education({ handleChange }) {
 
 
   return (
-    <form className="education">
+    <form className="education place">
       <h2 className="title">  <img className="logo" src={educationPic} alt="" /> Education <button type="button" className={expanded ? "arrow clicked" : "arrow"} onClick={handleExpand}>⌄</button></h2>
     
       <div className={expanded ? "fields-container expanded" : "fields-container"}>

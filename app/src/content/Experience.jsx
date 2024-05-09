@@ -80,7 +80,7 @@ export default function Experience({ handleChange }) {
   );
 
   return (
-    <form className="experience">
+    <form className="experience place">
     <h2 className="title"> <img className="logo" src={suitcasePic} alt="" />  Experience <button type="button" onClick={handleExpand} className={expanded ? "arrow clicked" : "arrow"}>⌄</button></h2>
     
     <div className={expanded ? "fields-container expanded" : "fields-container"}>

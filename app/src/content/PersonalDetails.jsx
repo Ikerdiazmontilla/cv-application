@@ -4,7 +4,7 @@ export default function PersonalDetails({ handleChange }) {
 
 
   return(
-    <form className="personal-details">
+    <form className="personal-details place">
       <h2>Personal Details</h2>
 
       <Field id="full-name" handleChange={handleChange} label="Full Name"/>

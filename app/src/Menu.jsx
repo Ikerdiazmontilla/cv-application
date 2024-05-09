@@ -7,7 +7,7 @@ export default function Menu({ handleMenuClick }) {
 
   return(
     <div className='menu'>
-      <button className='menu-btn' id='content' onClick={handleMenuClick}>
+      <button className='menu-btn active' id='content' onClick={handleMenuClick}>
         <img src={content} alt="" />
         <p>Content</p>
       </button>

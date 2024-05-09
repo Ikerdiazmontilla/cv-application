@@ -149,15 +149,19 @@ img{
   margin-bottom: 15px;
 }
 
-form{
+.place{
   background-color: var(--content-background);
   min-width: 100%;
   border-radius: var(--border-radius);
   padding: 26px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
   box-shadow: var(--content-shadow);
+
+}
+
+form{
+  gap: 8px;
 }
 
 label > span{
@@ -166,7 +170,7 @@ label > span{
   color: var(--required-color);
 }
 
-input{
+input[type="text"]{
   border-radius: var(--border-radius);
   border: none;
   background-color: var(--input-background);
@@ -176,7 +180,7 @@ input{
   transition: outline 0.3s;
 }
 
-input:focus{
+input[type="text"]:focus{
   outline: 2px solid var(--outline-color);
 }
 
@@ -269,7 +273,89 @@ input:focus{
   max-height: 15px;
 }
 
+.visuals{
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
 
+.visual-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.visual{
+  height: 50px;
+  width: 50px;
+  border: 1px solid var(--form-btn-color);
+  border-radius: var(--border-radius);
+}
+
+.top-visual{
+  background: linear-gradient(to bottom, rgb(86, 86, 233) 50%, var(--content-background) 50%);
+}
+
+.left-visual{
+  background: linear-gradient(to right, rgb(86, 86, 233) 50%, var(--content-background) 50%);
+}
+
+.right-visual{
+  background: linear-gradient(to left, rgb(86, 86, 233) 50%, var(--content-background) 50%);
+}
+
+
+.pick-color{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+input[type="color"]{
+  visibility: hidden;
+}
+
+.color-picker{
+  border-radius: 50%;
+  background-color: blue;
+  aspect-ratio: 1/1;
+  width: 30px;
+}
+
+.font-wrapper{
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.font{
+  height: 70px;
+  width: 50px;
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 30px;
+  border: 1.5px solid var(--form-btn-color);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+}
+
+.font > p:first-child{
+  font-size: 1.4rem;
+}
+
+.font.serif{
+  font-family:serif;
+}
+
+.font.sans{
+  font-family: sans-serif;
+}
+
+.font.mono{
+  font-family: monospace;
+}
 
 
 

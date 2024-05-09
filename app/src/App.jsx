@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Content from "./content/Content"
 import Menu from "./Menu"
+import Appearance from './appereance/Appearance';
 
 function App() {
   const [ isContent, setIsContent ] = useState(true);
@@ -20,7 +21,7 @@ function App() {
     <div className="body">
       <Menu handleMenuClick={handleMenuClick}/>
       {isContent === true ? <Content handleChange={handleChange}/>
-      : <p>Bruh</p>}
+      : <Appearance/>}
     <div>Pizza</div>
     </div>
   )
