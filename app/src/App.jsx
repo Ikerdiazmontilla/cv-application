@@ -6,6 +6,8 @@ import CV from './cv/CV';
 
 function App() {
   const [ isContent, setIsContent ] = useState(true);
+  const [ currentColor, setCurrentColor ] = useState('blue');
+  const [ currentFont, setCurrentFont ] = useState('serif');
   
   const handleMenuClick = (event) => {
     document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'))
@@ -24,14 +26,21 @@ function App() {
   }
 
   const handleColorChange = (event) => {
-    document.documentElement.style.cssText = `--current-color: ${event.currentTarget.value}`;
+    setCurrentColor(event.currentTarget.value);
   }
+
+  const handleChangeFont = (event) => {
+    setCurrentFont(event.currentTarget.id)
+  }
+
+  document.documentElement.style.setProperty("--current-color", currentColor);
+  document.documentElement.style.setProperty('--current-font', currentFont);
 
   return (
     <div className="body">
       <Menu handleMenuClick={handleMenuClick}/>
       {isContent === true ? <Content handleChange={handleChange}/>
-      : <Appearance handleVisuals={handleVisuals} handleColorChange={handleColorChange}/>}
+      : <Appearance handleVisuals={handleVisuals} handleColorChange={handleColorChange} handleChangeFont={handleChangeFont}/>}
       <CV/>
     </div>
   )

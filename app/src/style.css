@@ -74,6 +74,7 @@ img{
   --top-space: 5vh;
   --gap: 30px;
   --current-color:blue;
+  --current-font:serif;
   --top-gradient:linear-gradient(to bottom, var(--current-color) 50%, var(--content-background) 50%);
   --left-gradient:linear-gradient(to right, var(--current-color) 50%, var(--content-background) 50%);
   --right-gradient: linear-gradient(to left, var(--current-color) 50%, var(--content-background) 50%);
@@ -352,15 +353,15 @@ input[type="color"]{
   font-size: 1.4rem;
 }
 
-.font.serif{
-  font-family:serif;
+.font#serif{
+  font-family: serif;
 }
 
-.font.sans{
+.font#sans{
   font-family: sans-serif;
 }
 
-.font.mono{
+.font#mono{
   font-family: monospace;
 }
 
@@ -368,7 +369,8 @@ input[type="color"]{
   aspect-ratio: 1/1.41;
   /* background-color: ; */
   min-width: 100%;
-  box-shadow: var(--cv-shadow)
+  box-shadow: var(--cv-shadow);
+  font-family: var(--current-font);
 }
 
 .cv.top{
