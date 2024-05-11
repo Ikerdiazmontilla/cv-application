@@ -12,6 +12,8 @@ function App() {
   const [ pD, setPD ] = useState({name: "", email: "", phone: "", address: ""});
   const [ educationValues, setEducationValues ] = useState({})
   const [ educationCurrentID, setEducationCurrentID ] = useState(null)
+  const [ experienceCurrentID, setExperienceCurrentID ] = useState(null)
+  const [ experienceValues, setExperienceValues ] = useState({})
   
   const handleMenuClick = (event) => {
     document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'))
@@ -28,44 +30,6 @@ function App() {
     setPD({...pD, [key]: event.target.value});
   }
 
-  function handleEducationSave() {
-    const school = document.querySelector('#school').value
-    const degree = document.querySelector('#degree').value
-    const startDate = document.querySelector('#start-date').value
-    const endDate = document.querySelector('#end-date').value
-    const location = document.querySelector('#location').value
-    const id = uuidv4();
-
-    if(school.length === 0 || degree.length === 0) return;
-    
-    const newValues = {...educationValues}
-    delete newValues[educationCurrentID];
-    const newObject = {
-      ...newValues,
-      [id]: {
-      school,
-      degree,
-      startDate,
-      endDate,
-      location,
-      id,
-      },
-    }
-    setEducationValues(newObject);
-  }
-
-  const handleEducationDelete = () => {
-    const newValues = {...educationValues};
-    delete newValues[educationCurrentID];
-    setEducationValues(newValues);
-  }
-
-  const handleEducationID = (event) => {
-    setEducationCurrentID(null);
-    if(event.currentTarget.id) {
-      setEducationCurrentID(event.currentTarget.id) 
-    }
-  }
 
   const handleVisuals = (event) => {
     const cv = document.querySelector('.cv');
@@ -83,12 +47,96 @@ function App() {
   document.documentElement.style.setProperty("--current-color", currentColor);
   document.documentElement.style.setProperty('--current-font', currentFont);
 
+  const educationObject = {
+    handleSave() {
+      const school = document.querySelector('#school').value
+      const degree = document.querySelector('#degree').value
+      const startDate = document.querySelector('#start-date').value
+      const endDate = document.querySelector('#end-date').value
+      const location = document.querySelector('#location').value
+      const id = uuidv4();
+  
+      if(school.length === 0 || degree.length === 0) return;
+      
+      const newValues = {...educationValues}
+      delete newValues[educationCurrentID];
+      const newObject = {
+        ...newValues,
+        [id]: {
+        school,
+        degree,
+        startDate,
+        endDate,
+        location,
+        id,
+        },
+      }
+      setEducationValues(newObject);
+    },
+    handleDelete() {
+      const newValues = {...educationValues};
+      delete newValues[educationCurrentID];
+      setEducationValues(newValues);
+    },
+    handleID(event) {
+      setEducationCurrentID(null);
+      if(event.currentTarget.id) {
+        setEducationCurrentID(event.currentTarget.id) 
+      }
+    },
+    educationValues,
+    currentID: educationCurrentID,
+  }
+
+  const experienceObject = {
+    handleSave() {
+      const name = document.querySelector('#comp-name').value
+      const position = document.querySelector('#position').value
+      const startDate = document.querySelector('#experience-start-date').value
+      const endDate = document.querySelector('#experience-end-date').value
+      const location = document.querySelector('#experience-location').value
+      const description = document.querySelector('#description').value
+      const id = uuidv4();
+  
+      if(name.length === 0 || position.length === 0) return;
+      
+      const newValues = {...experienceValues}
+      delete newValues[experienceCurrentID];
+      const newObject = {
+        ...newValues,
+        [id]: {
+        name,
+        position,
+        startDate,
+        endDate,
+        location,
+        description,
+        id,
+        },
+      }
+      setExperienceValues(newObject);
+    },
+    handleDelete() {
+      const newValues = {...experienceValues};
+      delete newValues[experienceCurrentID];
+      setExperienceValues(newValues);
+    },
+    handleID(event) {
+      setExperienceCurrentID(null);
+      if(event.currentTarget.id) {
+        setExperienceCurrentID(event.currentTarget.id) 
+      }
+    },
+    experienceValues,
+    currentID: experienceCurrentID,
+  }
+
   return (
     <div className="body">
       <Menu handleMenuClick={handleMenuClick}/>
-      {isContent === true ? <Content handleDetailsChange={handleDetailsChange} handleEducationSave={handleEducationSave} handleEducationDelete={handleEducationDelete} handleEducationID = {handleEducationID} educationValues={educationValues} educationCurrentID={educationCurrentID}/>
+      {isContent === true ? <Content handleDetailsChange={handleDetailsChange} educationObject={educationObject} experienceObject={experienceObject}/>
       : <Appearance handleVisuals={handleVisuals} handleColorChange={handleColorChange} handleChangeFont={handleChangeFont}/>}
-      <CV personalDetails={pD} educationValues={educationValues}/>
+      <CV personalDetails={pD} educationValues={educationValues} experienceValues={experienceValues}/>
     </div>
   )
 }

@@ -1,16 +1,16 @@
 import PersonalDetails from "./PersonalDetails"
 import Education from "./Education"
-// import Experience from "./Experience"
+import Experience from "./Experience"
 
-export default function Content({ handleDetailsChange, handleEducationSave, handleEducationDelete, handleEducationID, educationValues, educationCurrentID }) {
+export default function Content({ handleDetailsChange, educationObject, experienceObject }) {
 
   return(
     <div className="info">
     <PersonalDetails handleChange={handleDetailsChange}/>
 
-    <Education handleSave={handleEducationSave} handleDelete={handleEducationDelete} handleID={handleEducationID} educationValues={educationValues} currentID={educationCurrentID}/> 
+    <Education handleSave={educationObject.handleSave} handleDelete={educationObject.handleDelete} handleID={educationObject.handleID} educationValues={educationObject.educationValues} currentID={educationObject.currentID}/> 
 
-    {/* <Experience/>    */}
+    <Experience handleSave={experienceObject.handleSave} handleDelete={experienceObject.handleDelete} handleID={experienceObject.handleID} experienceValues={experienceObject.experienceValues} currentID={experienceObject.currentID}/>   
     
     </div>
   )
