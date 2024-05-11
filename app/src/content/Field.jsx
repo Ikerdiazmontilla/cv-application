@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 
-export default function Field({ label, id, initValue = "", handleChange = "", isRequired = false}) {
+export default function Field({ label, id, initValue = "", handleChange = () => {}, isRequired = false}) {
   const [ value, setValue ] = useState(initValue);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function Field({ label, id, initValue = "", handleChange = "", is
 
   function onWrite(event) {
     setValue(event.target.value);
-    // handleChange();
+    handleChange(event);
   }
 
   return (

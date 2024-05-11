@@ -1,82 +1,49 @@
 import { useState } from "react"
 import Field from "./Field"
 import educationPic from "../assets/education.png"
-import { v4 as uuidv4 } from 'uuid';
 import FormBtns from "./FormBtns"
 import MoreBtn from "./MoreBtn"
 import Section from "./Section";
 
 
 
-
-
-
-export default function Education({ handleChange }) {
+export default function Education({handleSave, handleDelete, educationValues, handleID, currentID}) {
   const [ expanded, setExpanded ] = useState(false);
-  const [ showForm, setShowForm ] = useState(false)
-  const [ currentId, setCurrentId ] = useState(null)
-  const [ educationValues, setEducationValues ] = useState({})
- 
+  const [ showForm, setShowForm ] = useState(false);
 
+ 
   const handleExpand = () => setExpanded(!expanded)
 
   const handleShowForm = (event) => {
-    setCurrentId(null);
-    if(event.currentTarget.id) {
-      setCurrentId(event.currentTarget.id) 
-    }
-    setShowForm(!showForm)
-  }
-  
-  const handleSave = () => {
-    const school = document.querySelector('#school').value
-    const degree = document.querySelector('#degree').value
-    const startDate = document.querySelector('#start-date').value
-    const endDate = document.querySelector('#end-date').value
-    const location = document.querySelector('#location').value
-    const id = uuidv4();
-
-    if(school.length === 0 || degree.length === 0) return;
-    
-    const newValues = {...educationValues}
-    delete newValues[currentId];
-    const newObject = {
-      ...newValues,
-      [id]: {
-      school,
-      degree,
-      startDate,
-      endDate,
-      location,
-      id,
-      },
-    }
-    setEducationValues(newObject);
+    handleID(event);
     setShowForm(!showForm);
   }
+  
+  const onSave = () => {
+    setShowForm(!showForm);
+    handleSave()
+  }
 
-  const handleDelete = () => {
-    const newValues = {...educationValues};
-    delete newValues[currentId];
-    setEducationValues(newValues);
+  const onDelete = () => {
     setShowForm(!showForm)
+    handleDelete()
   }
 
   const EducationFields = () => (
     <>
-      <Field id="school" handleChange={handleChange} label="School" 
-      initValue={educationValues[currentId] ? educationValues[currentId]['school'] : ""}
+      <Field id="school"  label="School" 
+      initValue={educationValues[currentID] ? educationValues[currentID]['school'] : ""}
       isRequired={true}/>
-      <Field id="degree" handleChange={handleChange} label="Degree" 
-      initValue={educationValues[currentId] ? educationValues[currentId]['degree'] : ""}
+      <Field id="degree" label="Degree" 
+      initValue={educationValues[currentID] ? educationValues[currentID]['degree'] : ""}
       isRequired={true}/>
-      <Field id="start-date" handleChange={handleChange} label="Start Date" 
-      initValue={educationValues[currentId] ? educationValues[currentId]['startDate'] : ""}/>
-      <Field id="end-date" handleChange={handleChange} label="End Date" 
-      initValue={educationValues[currentId] ? educationValues[currentId]['endDate'] : ""}/>
-      <Field id="location" handleChange={handleChange} label="Location" 
-      initValue={educationValues[currentId] ? educationValues[currentId]['location'] : ""}/>
-      <FormBtns handleDelete={handleDelete} handleSave={handleSave} handleShowForm={handleShowForm}/>
+      <Field id="start-date"  label="Start Date" 
+      initValue={educationValues[currentID] ? educationValues[currentID]['startDate'] : ""}/>
+      <Field id="end-date"  label="End Date" 
+      initValue={educationValues[currentID] ? educationValues[currentID]['endDate'] : ""}/>
+      <Field id="location"  label="Location" 
+      initValue={educationValues[currentID] ? educationValues[currentID]['location'] : ""}/>
+      <FormBtns handleDelete={onDelete} handleSave={onSave} handleShowForm={handleShowForm}/>
     </>
   );
 
