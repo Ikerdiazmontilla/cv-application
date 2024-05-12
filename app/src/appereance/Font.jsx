@@ -1,10 +1,10 @@
 export default function Font({ handleChangeFont }) {
   return(
     <div className="place">
-      <h2 className="info">Font</h2>
+      <h2 className="title">Font</h2>
 
       <div className="font-wrapper">
-        <div className="font" id="serif" onClick={handleChangeFont}>
+        <div className="font clicked" id="serif" onClick={handleChangeFont}>
           <p>Aa</p>
           <p>Serif</p>
         </div>

@@ -3,7 +3,7 @@ import InfoSection from "./InfoSection"
 export default function Information({ title, sections, isEducation = false }) {
   
   return(
-    <div>
+    <div className="information">
       <h3>{title}</h3>
       {Object.values(sections).map((section) => {
         let values;

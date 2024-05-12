@@ -4,8 +4,10 @@ export default function InfoSection({values}) {
       <div className="date">{values.date}</div>
       <div className="title">{values.title}</div>
       <div className="location">{values.location}</div>
-      <div className="subtitle">{values.subtitle}</div>
-      {values.description ? <div className="description">{values.description}</div> : ""}
+      <div>
+        <div className="subtitle">{values.subtitle}</div>
+        {values.description ? <div className="description">{values.description}</div> : ""}
+      </div>
     </div>
 
   )

@@ -8,12 +8,37 @@ import { v4 as uuidv4 } from 'uuid';
 function App() {
   const [ isContent, setIsContent ] = useState(true);
   const [ currentColor, setCurrentColor ] = useState('lightblue');
+  const [ backgroundColor, setBackgroundColor ] = useState('#EEF1F2')
   const [ currentFont, setCurrentFont ] = useState('serif');
-  const [ pD, setPD ] = useState({name: "", email: "", phone: "", address: ""});
-  const [ educationValues, setEducationValues ] = useState({})
+  const [ pD, setPD ] = useState({
+    name: "Josephine Meyers",
+    email: "josephine.meyers@mail.co.uk",
+    phone: "+44 3245 5521 5521",
+    address: "London, UK"
+    });
+  const [ educationValues, setEducationValues ] = useState({
+    london: {
+      school: 'London City University',
+      degree: 'Bachelors in Economics',
+      startDate: '08/2020',
+      endDate: 'present',
+      location: 'New York City, US',
+      id: 'london',
+      },
+  })
   const [ educationCurrentID, setEducationCurrentID ] = useState(null)
   const [ experienceCurrentID, setExperienceCurrentID ] = useState(null)
-  const [ experienceValues, setExperienceValues ] = useState({})
+  const [ experienceValues, setExperienceValues ] = useState({
+    umbrella: {
+      name: 'Umbrella Inc.',
+      position: 'UX & UI Designer',
+      startDate: '08/2020',
+      endDate: 'present',
+      location: 'New York City, US',
+      description: 'Designed and prototyped user interface patterns for various clients in various industries, ranging from self-service apps within the telecommunications-sector to mobile games for IOS and Android',
+      id: 'umbrella',
+      },
+  })
   
   const handleMenuClick = (event) => {
     document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'))
@@ -37,15 +62,25 @@ function App() {
   }
 
   const handleColorChange = (event) => {
-    setCurrentColor(event.currentTarget.value);
+    const color = event.currentTarget.value
+    setCurrentColor(color);
+    const r = parseInt(color.slice(1, 3), 16);
+    const g = parseInt(color.slice(3, 5), 16);
+    const b = parseInt(color.slice(5, 7), 16);
+    const luminance = 0.2126 * (r / 255) + 0.7152 * (g / 255) + 0.0722 * (b / 255);
+    setBackgroundColor(luminance > 0.5 ? '#191919' : '#EEF1F2');
   }
 
   const handleChangeFont = (event) => {
     setCurrentFont(event.currentTarget.id)
+    const fontDivs = document.querySelectorAll('.font')
+    fontDivs.forEach((div) => div.className = 'font');
+    event.currentTarget.className = 'font clicked'
   }
 
   document.documentElement.style.setProperty("--current-color", currentColor);
   document.documentElement.style.setProperty('--current-font', currentFont);
+  document.documentElement.style.setProperty('--current-background-color', backgroundColor);
 
   const educationObject = {
     handleSave() {
@@ -142,3 +177,10 @@ function App() {
 }
 
 export default App
+
+
+
+
+
+
+

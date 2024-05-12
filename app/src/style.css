@@ -73,12 +73,13 @@ img{
   --border-radius:12px;
   --top-space: 5vh;
   --gap: 30px;
-  --current-color: rgb(164, 164, 226);
+  --current-color: rgb(10, 10, 207);
+  --current-background-color: #EEF1F2;
   --current-font:serif;
   --top-gradient:linear-gradient(to bottom, var(--current-color) 50%, var(--content-background) 50%);
   --left-gradient:linear-gradient(to right, var(--current-color) 50%, var(--content-background) 50%);
   --right-gradient: linear-gradient(to left, var(--current-color) 50%, var(--content-background) 50%);
-  --top-cv-gradient:linear-gradient(to bottom, var(--current-color) 15%, var(--content-background) 15%);
+  --top-cv-gradient:linear-gradient(to bottom, var(--current-color) 14%, var(--content-background) 14%);
   --left-cv-gradient:linear-gradient(to right, var(--current-color) 45%, var(--content-background) 45%);
   --right-cv-gradient:linear-gradient(to left, var(--current-color) 45%, var(--content-background) 45%);
  }
@@ -347,6 +348,12 @@ input[type="color"]{
   border: 1.5px solid var(--form-btn-color);
   border-radius: var(--border-radius);
   cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.font.clicked{
+  background-color: #0E374E;
+  color: var(--content-background);
 }
 
 .font > p:first-child{
@@ -371,6 +378,9 @@ input[type="color"]{
   min-width: 100%;
   box-shadow: var(--cv-shadow);
   font-family: var(--current-font);
+  padding: 0px 5%;
+  font-size: 1rem;
+
 }
 
 .cv.top{
@@ -390,6 +400,11 @@ input[type="color"]{
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  height: 14%;
+  width: 100%;
+  gap: 16px;
+  margin-bottom: 16px;
+  color: var(--current-background-color);
 }
 
 .header-wrapper{
@@ -397,5 +412,32 @@ input[type="color"]{
   width: 100%;
   gap: 30px;
   justify-content: center;
+}
+
+.information{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0px;
+}
+
+.info-section{
+  width: 100%;
+  height: fit-content;
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  grid-template-rows: min-content min-content;
+  grid-auto-rows: min-content;
+  padding: 12px;
+  column-gap: 12px;
+}
+
+
+h3{
+  width: 100%;
+  align-self: center;
+  background-color: var(--current-background-color);
+  color: var(--current-color);
+  text-align: center;
 }
 
