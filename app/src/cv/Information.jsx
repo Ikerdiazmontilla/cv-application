@@ -4,7 +4,7 @@ export default function Information({ title, sections, isEducation = false }) {
   
   return(
     <div className="information">
-      <h3>{title}</h3>
+      {Object.keys(sections).length === 0 ? "": <h3>{title}</h3>}
       {Object.values(sections).map((section) => {
         let values;
           if(isEducation === true) { 

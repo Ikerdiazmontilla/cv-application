@@ -70,6 +70,7 @@ img{
   --required-color: rgb(78, 77, 77);
   --cv-shadow: 0px 0px 3px 2px rgb(206, 200, 200);
   --content-shadow:  1px 2px 3px 2px rgb(150, 149, 149);
+  --template-loader-shadow:0 7px 29px 0 hsla(240, 5%, 41%, .2);
   --border-radius:12px;
   --top-space: 5vh;
   --gap: 30px;
@@ -179,7 +180,7 @@ label > span{
   color: var(--required-color);
 }
 
-input[type="text"]{
+input[type="text"], textarea{
   border-radius: var(--border-radius);
   border: none;
   background-color: var(--input-background);
@@ -189,7 +190,7 @@ input[type="text"]{
   transition: outline 0.3s;
 }
 
-input[type="text"]:focus{
+input[type="text"]:focus, textarea:focus{
   outline: 2px solid var(--outline-color);
 }
 
@@ -414,6 +415,15 @@ input[type="color"]{
   justify-content: center;
 }
 
+.header-wrapper > div{
+  display: flex;
+  gap: 5px;
+}
+
+.icon {
+  fill: var(--current-background-color);
+}
+
 .information{
   width: 100%;
   display: flex;
@@ -440,4 +450,33 @@ h3{
   color: var(--current-color);
   text-align: center;
 }
+
+.template-loader{
+  display: flex;
+  padding: 12px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--template-loader-shadow);
+  background-color: var(--content-background);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--gap);
+  position: sticky;
+  top: 8px;
+  gap: 20px;
+  font-weight: 600;
+}
+
+.clear-resume{
+  display: flex;
+  align-items: center;
+  color: rgb(243, 63, 63);
+}
+
+.load-example{
+  background-color: var(--input-background);
+  width: 50%;
+  border-radius: 6px;
+  padding: 2px;
+}
+
 

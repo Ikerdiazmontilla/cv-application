@@ -4,41 +4,48 @@ import Menu from "./Menu"
 import Appearance from './appereance/Appearance';
 import CV from './cv/CV';
 import { v4 as uuidv4 } from 'uuid';
+import TemplateLoader from './TemplateLoader';
+
+const initialPD = {
+  name: "Josephine Meyers",
+  email: "josephine.meyers@mail.co.uk",
+  phone: "+44 3245 5521 5521",
+  address: "London, UK"
+  }
+
+const initialEducationValues = {
+  london: {
+    school: 'London City University',
+    degree: 'Bachelors in Economics',
+    startDate: '08/2020',
+    endDate: 'present',
+    location: 'New York City, US',
+    id: 'london',
+    },
+}
+
+const initialExperienceValues = {
+  umbrella: {
+    name: 'Umbrella Inc.',
+    position: 'UX & UI Designer',
+    startDate: '08/2020',
+    endDate: 'present',
+    location: 'New York City, US',
+    description: 'Designed and prototyped user interface patterns for various clients in various industries, ranging from self-service apps within the telecommunications-sector to mobile games for IOS and Android',
+    id: 'umbrella',
+    },
+}
 
 function App() {
   const [ isContent, setIsContent ] = useState(true);
-  const [ currentColor, setCurrentColor ] = useState('lightblue');
+  const [ currentColor, setCurrentColor ] = useState('#4D74A8');
   const [ backgroundColor, setBackgroundColor ] = useState('#EEF1F2')
   const [ currentFont, setCurrentFont ] = useState('serif');
-  const [ pD, setPD ] = useState({
-    name: "Josephine Meyers",
-    email: "josephine.meyers@mail.co.uk",
-    phone: "+44 3245 5521 5521",
-    address: "London, UK"
-    });
-  const [ educationValues, setEducationValues ] = useState({
-    london: {
-      school: 'London City University',
-      degree: 'Bachelors in Economics',
-      startDate: '08/2020',
-      endDate: 'present',
-      location: 'New York City, US',
-      id: 'london',
-      },
-  })
+  const [ pD, setPD ] = useState(initialPD);
+  const [ educationValues, setEducationValues ] = useState(initialEducationValues)
   const [ educationCurrentID, setEducationCurrentID ] = useState(null)
   const [ experienceCurrentID, setExperienceCurrentID ] = useState(null)
-  const [ experienceValues, setExperienceValues ] = useState({
-    umbrella: {
-      name: 'Umbrella Inc.',
-      position: 'UX & UI Designer',
-      startDate: '08/2020',
-      endDate: 'present',
-      location: 'New York City, US',
-      description: 'Designed and prototyped user interface patterns for various clients in various industries, ranging from self-service apps within the telecommunications-sector to mobile games for IOS and Android',
-      id: 'umbrella',
-      },
-  })
+  const [ experienceValues, setExperienceValues ] = useState(initialExperienceValues)
   
   const handleMenuClick = (event) => {
     document.querySelectorAll('.menu-btn').forEach(btn => btn.classList.remove('active'))
@@ -55,6 +62,17 @@ function App() {
     setPD({...pD, [key]: event.target.value});
   }
 
+  function loadResume() {
+    setPD(initialPD);
+    setEducationValues(initialEducationValues);
+    setExperienceValues(initialExperienceValues);
+  }
+
+  function clearResume() {
+    setPD({});
+    setEducationValues({});
+    setExperienceValues({});
+  }
 
   const handleVisuals = (event) => {
     const cv = document.querySelector('.cv');
@@ -169,8 +187,11 @@ function App() {
   return (
     <div className="body">
       <Menu handleMenuClick={handleMenuClick}/>
-      {isContent === true ? <Content handleDetailsChange={handleDetailsChange} educationObject={educationObject} experienceObject={experienceObject}/>
-      : <Appearance handleVisuals={handleVisuals} handleColorChange={handleColorChange} handleChangeFont={handleChangeFont}/>}
+      <div>
+        <TemplateLoader loadResume={loadResume} clearResume={clearResume}/>
+        {isContent === true ? <Content handleDetailsChange={handleDetailsChange} educationObject={educationObject} experienceObject={experienceObject}/>
+        : <Appearance handleVisuals={handleVisuals} handleColorChange={handleColorChange} handleChangeFont={handleChangeFont}/>}
+      </div>
       <CV personalDetails={pD} educationValues={educationValues} experienceValues={experienceValues}/>
     </div>
   )

@@ -1,11 +1,5 @@
-Change color depending on contrast
-
 Change arrangement depending on gradient direction
 
 Add symbols to header
-
-Add the clear example load example button
-
-Add text area for description
 
 Correct show and hide sections
