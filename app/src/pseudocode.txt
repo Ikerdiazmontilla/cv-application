@@ -1,5 +1,3 @@
-Change arrangement depending on gradient direction
-
 Add symbols to header
 
 Correct show and hide sections

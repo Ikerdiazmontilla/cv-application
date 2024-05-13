@@ -439,6 +439,11 @@ input[type="color"]{
   justify-content: center;
 }
 
+.header-wrapper > div{
+  display: flex;
+  align-items: center;
+}
+
 .cv.left .header-wrapper, .cv.right .header-wrapper{
   flex-direction: column;
 }
