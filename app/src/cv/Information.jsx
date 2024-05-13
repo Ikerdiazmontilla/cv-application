@@ -11,21 +11,24 @@ export default function Information({ title, sections, isEducation = false }) {
             values = {
               title: section.school,
               subtitle: section.degree,
-              date: `${section.startDate} - ${section.endDate}`,
+              date: {startDate:section.startDate, endDate:section.endDate},
               location: section.location,
               key: section.id,
             }
+
           } else {
             values = {
               title: section.name,
               subtitle: section.position,
-              date: `${section.startDate} - ${section.endDate}`,
+              date: {startDate: section.startDate, endDate: section.endDate},
               location: section.location,
               key: section.id,
               description: section.description,
             }
           } 
-          return <InfoSection key={section.id} values={values}/>
+          if (section.show === true) {
+            return <InfoSection key={section.id} values={values}/>
+          }
       })}
     </div>
   )

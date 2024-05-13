@@ -8,9 +8,9 @@ export default function Content({ handleDetailsChange, educationObject, experien
     <div className="info">
     <PersonalDetails handleChange={handleDetailsChange}/>
 
-    <Education handleSave={educationObject.handleSave} handleDelete={educationObject.handleDelete} handleID={educationObject.handleID} educationValues={educationObject.educationValues} currentID={educationObject.currentID}/> 
+    <Education handleSave={educationObject.handleSave} handleDelete={educationObject.handleDelete} handleID={educationObject.handleID} educationValues={educationObject.educationValues} currentID={educationObject.currentID} handleShowSection={educationObject.handleShowSection}/> 
 
-    <Experience handleSave={experienceObject.handleSave} handleDelete={experienceObject.handleDelete} handleID={experienceObject.handleID} experienceValues={experienceObject.experienceValues} currentID={experienceObject.currentID}/>   
+    <Experience handleSave={experienceObject.handleSave} handleDelete={experienceObject.handleDelete} handleID={experienceObject.handleID} experienceValues={experienceObject.experienceValues} currentID={experienceObject.currentID} handleShowSection={experienceObject.handleShowSection}/>   
     
     </div>
   )

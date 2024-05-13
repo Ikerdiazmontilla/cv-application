@@ -1,21 +1,19 @@
-import { useState } from "react"
+// import { useState } from "react"
 import showPic from "../assets/view.png"
 import hidePic from "../assets/hide.png"
 
-export default function Section({ values, handleShowForm, isEducation = false }) {
-  const [ show, setShow ] = useState(true);
+export default function Section({ values, handleShowForm, isEducation = false , handleShowSection, showSection}) {
 
-  const handleShow = () => {
-    setShow(!show)};
+
 
   return(
     <div type="button" className={isEducation? "education section": "experience section"} id={values.id}  onClick={handleShowForm}>
         <p>{isEducation ? values.school : values.name}</p>
         <button type="button" className="show" onClick={ (e) => {
           e.stopPropagation();
-          handleShow();
+          handleShowSection(e);
         }}>
-          <img src={ show &&  showPic || hidePic} alt="show title" />
+          <img src={ showSection &&  showPic || hidePic} alt="show title" />
         </button>
     </div>
   )

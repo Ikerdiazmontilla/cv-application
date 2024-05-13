@@ -5,7 +5,7 @@ import MoreBtn from "./MoreBtn";
 import Section from "./Section";
 import FormBtns from "./FormBtns";
 
-export default function Experience({ handleSave, handleDelete, experienceValues, handleID, currentID }) {
+export default function Experience({ handleSave, handleDelete, experienceValues, handleID, currentID, handleShowSection }) {
   const [ expanded, setExpanded ] = useState(false);
   const [ showForm, setShowForm ] = useState(false)
 
@@ -19,6 +19,9 @@ export default function Experience({ handleSave, handleDelete, experienceValues,
   }
 
   const onSave = () => {
+    const name = document.querySelector('#comp-name').value
+    const position = document.querySelector('#position').value
+    if(name.length === 0 || position.length === 0) return;
     setShowForm(!showForm);
     handleSave()
   }
@@ -56,7 +59,7 @@ export default function Experience({ handleSave, handleDelete, experienceValues,
       {showForm ? <ExperienceFields/> :
               <>
                 {Object.values(experienceValues).map((values) => {
-                  return <Section key={values.id} values={values} handleShowForm={handleShowForm}/>
+                  return <Section key={values.id} values={values} handleShowForm={handleShowForm} handleShowSection={handleShowSection} showSection={values.show}/>
                 })}
                 <MoreBtn handleShowForm={handleShowForm} text={'+ Experience'}/>
               </>

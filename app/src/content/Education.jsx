@@ -7,7 +7,7 @@ import Section from "./Section";
 
 
 
-export default function Education({handleSave, handleDelete, educationValues, handleID, currentID}) {
+export default function Education({handleSave, handleDelete, educationValues, handleID, currentID, handleShowSection}) {
   const [ expanded, setExpanded ] = useState(false);
   const [ showForm, setShowForm ] = useState(false);
 
@@ -20,6 +20,9 @@ export default function Education({handleSave, handleDelete, educationValues, ha
   }
   
   const onSave = () => {
+    const school = document.querySelector('#school').value
+    const degree = document.querySelector('#degree').value
+    if(school.length === 0 || degree.length === 0) return;
     setShowForm(!showForm);
     handleSave()
   }
@@ -56,7 +59,7 @@ export default function Education({handleSave, handleDelete, educationValues, ha
         {showForm ? <EducationFields/> :
               <>
                 {Object.values(educationValues).map((values) => {
-                  return <Section key={values.id} values={values} handleShowForm={handleShowForm} isEducation={true}/>
+                  return <Section key={values.id} values={values} handleShowForm={handleShowForm} isEducation={true} showSection={values.show} handleShowSection={handleShowSection}/>
                 })}
                 <MoreBtn handleShowForm={handleShowForm} text={'+ Education'}/>
               </>

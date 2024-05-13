@@ -473,11 +473,10 @@ input[type="color"]{
   min-width: 50%;
 }
 
-
-
+/* 
 *{
-  /* border: 1px solid red; */
-}
+  border: 1px solid red;
+} */
 
 .info-section{
   width: 100%;

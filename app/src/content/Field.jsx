@@ -18,7 +18,7 @@ export default function Field({ label, id, initValue = "", handleChange = () => 
   return (
     <div className="field">
       <label htmlFor={id}>{label}{isRequired === true && <span>Required</span>}</label>
-      { id === 'description' ? <textarea id={id} onChange={onWrite}>{value}</textarea> :<input value={value} type="text" id={id} onChange={onWrite}/>}
+      { id === 'description' ? <textarea id={id} onChange={onWrite} value={value}></textarea> :<input value={value} type="text" id={id} onChange={onWrite}/>}
     </div> 
   )
 }

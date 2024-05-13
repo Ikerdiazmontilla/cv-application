@@ -21,6 +21,7 @@ const initialEducationValues = {
     endDate: 'present',
     location: 'New York City, US',
     id: 'london',
+    show:true,
     },
 }
 
@@ -33,6 +34,7 @@ const initialExperienceValues = {
     location: 'New York City, US',
     description: 'Designed and prototyped user interface patterns for various clients in various industries, ranging from self-service apps within the telecommunications-sector to mobile games for IOS and Android',
     id: 'umbrella',
+    show: true,
     },
 }
 
@@ -108,10 +110,12 @@ function App() {
       const endDate = document.querySelector('#end-date').value
       const location = document.querySelector('#location').value
       const id = uuidv4();
-  
-      if(school.length === 0 || degree.length === 0) return;
       
       const newValues = {...educationValues}
+      let show = true;
+      if(educationCurrentID) {
+        show = newValues[educationCurrentID].show;
+      }
       delete newValues[educationCurrentID];
       const newObject = {
         ...newValues,
@@ -122,6 +126,7 @@ function App() {
         endDate,
         location,
         id,
+        show,
         },
       }
       setEducationValues(newObject);
@@ -137,6 +142,18 @@ function App() {
         setEducationCurrentID(event.currentTarget.id) 
       }
     },
+    handleShowSection(event) {
+      const id = event.currentTarget.parentElement.id
+      const show = educationValues[id].show
+      const newValues = {...educationValues}
+      if(show === false){
+        newValues[id].show = true
+        
+      } else {
+        newValues[id].show = false
+      }
+      setEducationValues(newValues)
+    },
     educationValues,
     currentID: educationCurrentID,
   }
@@ -150,10 +167,12 @@ function App() {
       const location = document.querySelector('#experience-location').value
       const description = document.querySelector('#description').value
       const id = uuidv4();
-  
-      if(name.length === 0 || position.length === 0) return;
       
       const newValues = {...experienceValues}
+      let show = true;
+      if(experienceCurrentID) {
+        show = experienceValues[experienceCurrentID].show
+      }
       delete newValues[experienceCurrentID];
       const newObject = {
         ...newValues,
@@ -165,6 +184,7 @@ function App() {
         location,
         description,
         id,
+        show,
         },
       }
       setExperienceValues(newObject);
@@ -179,6 +199,17 @@ function App() {
       if(event.currentTarget.id) {
         setExperienceCurrentID(event.currentTarget.id) 
       }
+    },
+    handleShowSection(event) {
+      const id = event.currentTarget.parentElement.id
+      const show = experienceValues[id].show
+      const newValues = {...experienceValues}
+      if(show === false){
+        newValues[id].show = true
+      } else {
+        newValues[id].show = false
+      }
+      setExperienceValues(newValues)
     },
     experienceValues,
     currentID: experienceCurrentID,
